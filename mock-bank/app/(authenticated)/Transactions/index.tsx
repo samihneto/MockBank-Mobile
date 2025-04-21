@@ -123,7 +123,7 @@ export default function Transactions() {
         return (
             <TouchableOpacity
                 style={styles.transacaoItem}
-                onPress={() => router.push('/TransactionDetail', { transacao: item })}
+                onPress={() => router.push(`/TransactionDetail?descricao=${encodeURIComponent(item.descricao)}`)}
             >
                 <View style={styles.transacaoIcone}>
                     <View style={[
@@ -148,7 +148,7 @@ export default function Transactions() {
                             styles.transacaoValor,
                             { color: isEntrada ? '#4BB543' : '#F24E1E' }
                         ]}>
-                            {isEntrada ? '+' : '-'}{formatarMoeda(item.valor)}
+                            {isEntrada ? '+' : '-'}{formatarMoeda(item.valor.toString())}
                         </Text>
                     </View>
 
@@ -260,7 +260,7 @@ export default function Transactions() {
                 <FlatList
                     data={transacoes}
                     renderItem={renderTransacao}
-                    keyExtractor={item => item.id}
+                    keyExtractor={item => item.id.toString()}
                     ListHeaderComponent={ListHeader}
                     ListFooterComponent={ListFooter}
                     contentContainerStyle={styles.listaConteudo}
@@ -306,7 +306,7 @@ const styles = StyleSheet.create({
     },
     backButtonText: {
         fontSize: 24,
-        color: '#4a7df3',
+        color: '#333',
     },
     headerTitle: {
         fontSize: 18,
@@ -356,7 +356,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#f5f5f5',
     },
     filtroBotaoAtivo: {
-        backgroundColor: '#4a7df3',
+        backgroundColor: '#ED145B',
     },
     filtroTexto: {
         fontSize: 14,

@@ -16,6 +16,7 @@ import {
     Alert,
     Image,
 } from 'react-native';
+import Footer from '@/components/Footer';
 
 interface ITransacoesProps {
     categoria: string;
@@ -38,7 +39,7 @@ export default function DashboardScreen() {
     const [atualizando, setAtualizando] = useState(false);
     const [isBiometricSupported, setIsBiometricSupported] = useState(false);
 
-    const { token, usuario  } = useAuth();
+    const { token, usuario } = useAuth();
 
     const router = useRouter();
 
@@ -131,13 +132,13 @@ export default function DashboardScreen() {
     }, [token]);
 
     // Renderiza cada item da lista de transações
-    const renderTransacao = ({ item }: {item:ITransacoesProps}) => {
+    const renderTransacao = ({ item }: { item: ITransacoesProps }) => {
         const isEntrada = item.tipo === 'recebida';
 
         return (
             <TouchableOpacity
                 style={styles.transacaoItem}
-                onPress={() => Alert.alert('Detalhes', `Transação: ${item.descricao}\nValor: ${formatarMoeda(item.valor)}\nData: ${formatarData(item.data)}`)}
+                onPress={() => Alert.alert('Detalhes', `Transação: ${item.descricao}\nValor: ${formatarMoeda(item.valor.toString())}\nData: ${formatarData(item.data)}`)}
             >
                 <View style={styles.transacaoIcone}>
                     <View style={[
@@ -164,7 +165,7 @@ export default function DashboardScreen() {
                         styles.valorTexto,
                         { color: isEntrada ? '#4BB543' : '#F24E1E' }
                     ]}>
-                        {isEntrada ? '+' : '-'}{formatarMoeda(item.valor)}
+                        {isEntrada ? '+' : '-'}{formatarMoeda(item.valor.toString())}
                     </Text>
                 </View>
             </TouchableOpacity>
@@ -175,21 +176,21 @@ export default function DashboardScreen() {
     useEffect(() => {
         (async () => {
             const saved = await AsyncStorage.getItem("@allow-fingerprint");
-            
-            if(saved === "true" || saved === "false") {
+
+            if (saved === "true" || saved === "false") {
                 return;
             }
 
             const compatible = await LocalAuthentication.hasHardwareAsync();
             setIsBiometricSupported(compatible);
 
-            if(compatible) {
+            if (compatible) {
                 const enrolled = await LocalAuthentication.isEnrolledAsync();
 
-                if(!enrolled) {
+                if (!enrolled) {
                     Alert.alert("Nenhuma biometria cadastrada");
                 }
-                
+
                 handleBiometricAuth();
 
             }
@@ -197,11 +198,11 @@ export default function DashboardScreen() {
     }, []);
 
     // Pedir autorização para utilizar a biometria
-    async function handleBiometricAuth () {
+    async function handleBiometricAuth() {
         try {
             const isAvailable = await LocalAuthentication.hasHardwareAsync();
 
-            if(!isAvailable) {
+            if (!isAvailable) {
                 return Alert.alert(
                     "Não suportado"
                 )
@@ -210,7 +211,7 @@ export default function DashboardScreen() {
             // Verificar se a biometria esta cadastrada
             const isEnrolled = await LocalAuthentication.isEnrolledAsync();
 
-            if(!isEnrolled) {
+            if (!isEnrolled) {
                 return Alert.alert(
                     "Nenhuma biometria"
                 )
@@ -222,11 +223,11 @@ export default function DashboardScreen() {
                 fallbackLabel: "Usar senha",
                 disableDeviceFallback: false
             });
-            
-            if(result.success) {
+
+            if (result.success) {
                 // Função
                 await AsyncStorage.setItem("@allow-fingerprint", "true");
-            }else {
+            } else {
                 // Falha
                 return;
             }
@@ -242,8 +243,9 @@ export default function DashboardScreen() {
             {/* Cabeçalho */}
             <View style={styles.header}>
                 <View>
-                    <Text style={styles.saudacao}>Olá, {usuario?.nome}</Text>
                     <Text style={styles.subtitulo}>Bem-vindo de volta!</Text>
+                    <Text style={styles.saudacao}>Olá, {usuario?.nome}</Text>
+
                 </View>
                 <TouchableOpacity style={styles.perfilContainer} onPress={() => router.push("/Profile")}>
                     <View style={styles.perfilImagem}>
@@ -265,7 +267,7 @@ export default function DashboardScreen() {
                     {carregandoSaldo ? (
                         <ActivityIndicator size="large" color="#4a7df3" />
                     ) : (
-                        <Text style={styles.valorSaldo}>{formatarMoeda(saldo)}</Text>
+                        <Text style={styles.valorSaldo}>{formatarMoeda(saldo.toString())}</Text>
                     )}
                 </View>
             </View>
@@ -333,7 +335,9 @@ export default function DashboardScreen() {
                         }
                     />
                 )}
+                    <Footer />
             </View>
+
         </SafeAreaView>
     );
 };
@@ -350,11 +354,10 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingHorizontal: 20,
         paddingTop: 20,
-        paddingBottom: 10,
         marginTop: 15,
     },
     saudacao: {
-        fontSize: 22,
+        fontSize: 32,
         fontWeight: 'bold',
         color: '#fff',
     },
@@ -441,7 +444,7 @@ const styles = StyleSheet.create({
     acaoIconeTexto: {
         fontSize: 24,
         fontWeight: 'bold',
-        
+
     },
     acaoTexto: {
         fontSize: 14,

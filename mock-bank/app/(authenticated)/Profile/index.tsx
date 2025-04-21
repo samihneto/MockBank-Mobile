@@ -78,12 +78,7 @@ export default function Profile() {
                                     text: 'Excluir Permanentemente',
                                     style: 'destructive',
                                     onPress: () => {
-                                        // Em um cenário real, você faria a exclusão na sua API
-                                        // e redirecionaria para a tela de login
-                                        navigation && navigation.reset({
-                                            index: 0,
-                                            routes: [{ name: 'Login' }],
-                                        });
+                                        router.replace('/Login');
                                     }
                                 }
                             ]
@@ -149,7 +144,7 @@ export default function Profile() {
 
                         <TouchableOpacity
                             style={styles.editarPerfilButton}
-                            onPress={() => router.push('EditarPerfil')}
+
                         >
                             <Text style={styles.editarPerfilText}>Editar Perfil</Text>
                         </TouchableOpacity>
@@ -252,7 +247,6 @@ export default function Profile() {
 
                         <TouchableOpacity
                             style={styles.linkContainer}
-                            onPress={() => router.push('/Ajuda')}
                         >
                             <Text style={[styles.linkLabel, temaEscuro && styles.textDark]}>
                                 Central de Ajuda
@@ -262,7 +256,6 @@ export default function Profile() {
 
                         <TouchableOpacity
                             style={styles.linkContainer}
-                            onPress={() => router.push('/TermosUso')}
                         >
                             <Text style={[styles.linkLabel, temaEscuro && styles.textDark]}>
                                 Termos de Uso
@@ -272,7 +265,6 @@ export default function Profile() {
 
                         <TouchableOpacity
                             style={styles.linkContainer}
-                            onPress={() => router.push('/Privacidade')}
                         >
                             <Text style={[styles.linkLabel, temaEscuro && styles.textDark]}>
                                 Política de Privacidade
@@ -282,7 +274,6 @@ export default function Profile() {
 
                         <TouchableOpacity
                             style={[styles.linkContainer, styles.ultimoLink]}
-                            onPress={() => router.push('/Sobre')}
                         >
                             <Text style={[styles.linkLabel, temaEscuro && styles.textDark]}>
                                 Sobre o Aplicativo

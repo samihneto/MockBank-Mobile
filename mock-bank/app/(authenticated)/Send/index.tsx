@@ -230,7 +230,7 @@ export default function Send() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#f8f9fa',
+        backgroundColor: '#fff',
     },
     keyboardAvoid: {
         flex: 1,
@@ -251,7 +251,7 @@ const styles = StyleSheet.create({
     },
     backButtonText: {
         fontSize: 24,
-        color: '#4a7df3',
+        color: '#2e3e5c',
     },
     headerTitle: {
         fontSize: 18,
@@ -272,10 +272,7 @@ const styles = StyleSheet.create({
         marginTop: 16,
     },
     input: {
-        backgroundColor: '#ffffff',
-        borderRadius: 8,
-        borderWidth: 1,
-        borderColor: '#e0e0e0',
+        backgroundColor: '#FAFAFA',
         paddingHorizontal: 16,
         paddingVertical: 12,
         fontSize: 16,
@@ -283,10 +280,7 @@ const styles = StyleSheet.create({
     valorContainer: {
         flexDirection: 'row',
         alignItems: 'center',
-        backgroundColor: '#ffffff',
-        borderRadius: 8,
-        borderWidth: 1,
-        borderColor: '#e0e0e0',
+        backgroundColor: '#FAFAFA',
         paddingHorizontal: 16,
     },
     moedaSymbol: {
@@ -313,7 +307,7 @@ const styles = StyleSheet.create({
         margin: 4,
     },
     categoriaItemSelecionada: {
-        backgroundColor: '#4a7df3',
+        backgroundColor: '#ED145B',
     },
     categoriaTexto: {
         color: '#2e3e5c',
@@ -324,12 +318,12 @@ const styles = StyleSheet.create({
         fontWeight: '500',
     },
     botaoEnviar: {
-        backgroundColor: '#4a7df3',
+        backgroundColor: '#ED145B',
         borderRadius: 8,
         paddingVertical: 16,
         alignItems: 'center',
         marginTop: 30,
-        shadowColor: '#4a7df3',
+        shadowColor: '#ED145B',
         shadowOffset: { width: 0, height: 4 },
         shadowOpacity: 0.2,
         shadowRadius: 8,

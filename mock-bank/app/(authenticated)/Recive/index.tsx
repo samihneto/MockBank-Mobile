@@ -26,8 +26,8 @@ export default function Recive() {
       try {
         // Simulando um tempo de carregamento
         setTimeout(() => {
-          setNomeUsuario('João Silva');
-          setApelido('joaozinho');
+          setNomeUsuario('Samir Neto');
+          setApelido('samihneto');
           setCarregando(false);
         }, 1000);
       } catch (erro) {
@@ -137,7 +137,7 @@ const styles = StyleSheet.create({
   },
   backButtonText: {
     fontSize: 24,
-    color: '#4a7df3',
+    color: '#2e3e5c',
   },
   headerTitle: {
     fontSize: 18,
@@ -197,7 +197,7 @@ const styles = StyleSheet.create({
   qrCodePlaceholder: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: '#4a7df3',
+    color: '#ED145B',
   },
   qrCodeInfo: {
     fontSize: 14,
@@ -246,7 +246,7 @@ const styles = StyleSheet.create({
   },
   copyButtonText: {
     fontSize: 14,
-    color: '#4a7df3',
+    color: '#ED145B',
     fontWeight: '500',
   },
   chaveApelidoInstrucao: {
@@ -255,7 +255,7 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   shareButton: {
-    backgroundColor: '#4a7df3',
+    backgroundColor: '#ED145B',
     borderRadius: 8,
     paddingVertical: 14,
     alignItems: 'center',

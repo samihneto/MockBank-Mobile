@@ -80,7 +80,6 @@ export default function DashboardScreen() {
         }
     };
 
-    // Função para buscar transações
     const buscarTransacoes = async () => {
         if (token === "") {
             return;
@@ -88,7 +87,6 @@ export default function DashboardScreen() {
 
         setCarregandoTransacoes(true);
         try {
-            // Em um cenário real, você faria uma requisição para sua API
             const resposta = await fetch('https://mock-bank-mock-back.yexuz7.easypanel.host/transferencias', {
                 headers: {
                     "Authorization": `Bearer ${token}`
@@ -113,16 +111,6 @@ export default function DashboardScreen() {
         setAtualizando(false);
     };
 
-    // async function getToken() {
-    //     const token = await AsyncStorage.getItem("@token");
-
-    //     if (token === null || token === undefined) {
-    //         router.push("/Login");
-    //         return;
-    //     }
-
-    //     setToken(token);
-    // }
 
 
     // Carregar dados ao montar o componente
@@ -247,11 +235,6 @@ export default function DashboardScreen() {
                     <Text style={styles.saudacao}>Olá, {usuario?.nome}</Text>
 
                 </View>
-                <TouchableOpacity style={styles.perfilContainer} onPress={() => router.push("/Profile")}>
-                    <View style={styles.perfilImagem}>
-                        <Text style={styles.perfilInicial}>{usuario?.nome?.charAt(0)}</Text>
-                    </View>
-                </TouchableOpacity>
             </View>
 
             {/* Cartão de Saldo */}
